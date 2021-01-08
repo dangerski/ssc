@@ -138,14 +138,9 @@ endfunction()
 #####################################################################################################################
 
 # turn off examples, tests and install for jsoncpp
-set(JSONCPP_WITH_EXAMPLE 0)
-set(JSONCPP_WITH_TESTS 0)
-macro (install)
-endmacro ()
-add_subdirectory(jsoncpp)
-macro (install)
-  _install(${ARGV})
-endmacro(install)
+set(JSONCPP_WITH_EXAMPLE OFF CACHE BOOL "Turn off JSONCPP examples" FORCE)
+set(JSONCPP_WITH_TESTS OFF CACHE BOOL "Turn off JSONCPP tests" FORCE)
+add_subdirectory(jsoncpph EXCLUDE_FROM_ALL)
 
 add_subdirectory(splinter)
 add_subdirectory(shared)
