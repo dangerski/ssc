@@ -1,22 +1,23 @@
-#ifndef _TCSFRESNEL_MOLTEN_SALT_DEFAULTS_H_
-#define _TCSFRESNEL_MOLTEN_SALT_DEFAULTS_H_
+#ifndef _TCSFRESNEL_MOLTEN_SALT_COMMON_DATA_H_
+#define _TCSFRESNEL_MOLTEN_SALT_COMMON_DATA_H_
 
 #include <stdio.h>
+
 #include "../input_cases/code_generator_utilities.h"
 
 //const char * SSCDIR = std::getenv("SSCDIR");
 //const char * SAMNTDIR = std::getenv("SAMNTDIR");
 
 char nlfms_ud_ind_od_path[512];
+
+
 int nlfms1 = sprintf(nlfms_ud_ind_od_path, "%s/test/input_cases/linearfresnel_molten_salt_data/ud_ind_od.csv", std::getenv("SSCDIR"));
 
 /**
-*  Default data for tcsfresnel_molten_salt technology model
+*  Default data for tcsfresnel_molten_salt run that can be further modified
 */
-ssc_data_t tcsfresnel_molten_salt_defaults()
+void tcsfresnel_molten_salt_default(ssc_data_t &data)
 {
-    ssc_data_t data = ssc_data_create();
-
 	char solar_resource_path[512];
 	// This is a copy of the actual weather file used, which has been copied to the ssc repo so it can be found by Travis CI for its tests.
 	//  The actual weather file used by SAM could change and thus change the UI output values (different input (i.e., weather file) -> different outputs)
@@ -252,7 +253,6 @@ ssc_data_t tcsfresnel_molten_salt_defaults()
     ssc_data_set_number(data, "T_htf_cold_ref", 293);
     ssc_data_set_number(data, "adjust:constant", 4);
 
-    return data;
 }
 
 #endif
